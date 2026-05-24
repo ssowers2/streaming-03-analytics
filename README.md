@@ -246,3 +246,33 @@ If you see something like this in your terminal: `>>>` or `...`
 You accidentally started Python interactive mode.
 It happens.
 Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
+
+## Technical Modification
+
+### What I Changed
+
+I modified the Kafka consumer project by creating custom versions of the example files:
+
+- `kafka_consumer_sowers.py`
+- `data_contract_sowers.py`
+- `data_validation_sowers`
+
+I added two new output columns to the processed streaming sales data:
+
+- `discount_applied`
+- `processed_timestamp`
+
+### Why I Made the Change
+
+I made these modifications to improve the streaming analytics output by adding more useful tracking
+and processing information to each Kafka message.
+
+The `discount_applied` field identifies whether a discount code was used for an order, and the
+`processed_timestamp` field records when the Kafka consumer processed the message.
+
+### What I Observed
+
+After running the Kafka producer and consumer, the new columns appeared successfully in the
+output CSV file.The consumer continued processing sales transactions correctly while also appending
+the new metadata fields to each record. The project successfully calculated sales totals, taxes, and
+streaming statistics while processing real-time Kafka messages.
