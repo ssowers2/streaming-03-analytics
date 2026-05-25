@@ -276,3 +276,116 @@ After running the Kafka producer and consumer, the new columns appeared successf
 output CSV file.The consumer continued processing sales transactions correctly while also appending
 the new metadata fields to each record. The project successfully calculated sales totals, taxes, and
 streaming statistics while processing real-time Kafka messages.
+
+# Apply Skills to a New Problem
+
+This project applies Apache Kafka streaming and Python data engineering skills to a new online
+course enrollment analytics dataset.Using Kafka producers and consumers, the project streams
+enrollment transaction data in real time, validates incoming messages against a custom data contract,
+enriches the records with calculated fields, and writes processed enrollment analytics to an output
+CSV file.
+
+---
+
+# New Problem Focus
+
+Instead of using the original retail sales example dataset, this project applied the same streaming
+and data engineering techniques to a new dataset focused on online course enrollments.
+
+The updated dataset includes:
+
+- course purchases
+- customer enrollment activity
+- payment methods
+- referral sources
+- discount code usage
+- device types
+- regional enrollment activity
+
+This allowed the project to analyze educational enrollment behavior instead of general retail
+sales transactions.
+
+---
+
+# Technical Modifications
+
+## New Files Created
+
+- `kafka_producer_enrollments_sowers.py`
+- `kafka_consumer_enrollments_sowers.py`
+- `data_contract_enrollments_sowers.py`
+- `enrollments_sowers.csv`
+- `products_sowers.csv`
+
+---
+
+# Dataset Changes
+
+The original product sales dataset was replaced with a new online course enrollment dataset.
+
+Example course categories included:
+
+- Artificial Intelligence
+- Data Science
+- SQL Analytics
+- Cloud Computing
+- Web Development
+- Cybersecurity
+
+The project also introduced additional enrollment-related fields such as:
+
+- `device_type`
+- `referral_source`
+- `discount_code`
+- `customer_note`
+
+---
+
+# Consumer Enhancements
+
+These fields improved the streaming analytics output by tracking:
+
+- whether discount codes were used
+- when each Kafka message was processed
+
+---
+
+# Validation Rules
+
+The enrollment data contract validated:
+
+- required fields
+- valid regions
+- valid products/courses
+- valid payment methods
+- valid device types
+- valid referral sources
+
+Messages that failed validation were written to a rejected records CSV file.
+
+---
+
+## Validation Results
+
+Most enrollment records were successfully validated, streamed through Kafka, and written to the
+processed enrollment output file. Two enrollment records were rejected during validation because
+they contained unsupported region IDs that were not included in the reference data.
+
+Rejected records included:
+
+- `US-NY`
+- `US-FL`
+
+The rejected records were automatically written to:
+
+```text
+data/output/rejected_enrollments_sowers.csv
+
+---
+
+# Output Files
+
+Processed enrollment analytics were written to:
+
+```text
+data/output/consumed_enrollments_sowers.csv

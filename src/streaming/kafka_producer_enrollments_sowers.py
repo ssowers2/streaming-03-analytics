@@ -1,29 +1,4 @@
-"""src/streaming/kafka_producer_case.py - Kafka producer example.
-
-Reads sales from data/sales.csv,
-validates them against the data contract,
-writes rejected records to a local CSV file,
-and sends valid records to a Kafka topic one message at a time.
-
-Start with main() at the bottom.
-Work up to see how it all fits together.
-
-Many functions are standard helpers
-and should not need project-specific modifications.
-
-Author: Denise Case
-Date: 2026-05
-
-Terminal command to run this file from the root project folder:
-
-    uv run python -m streaming.kafka_producer_case
-
-OBS:
-  Don't edit this file - it should remain a working example.
-  Copy it, rename it producer_yourname.py, and modify your copy.
-"""
-
-# === DECLARE IMPORTS ===
+# === DECLARE IMPORTS ===  # noqa: D100
 
 from collections.abc import Generator
 import os
@@ -49,13 +24,13 @@ from datafun_toolkit.logger import get_logger, log_header, log_path
 from dotenv import load_dotenv
 
 from streaming.core.utils import log_env_vars
-from streaming.data_validation.data_contract_case import (
+from streaming.data_validation.data_contract_enrollments_sowers import (
     PRODUCTS_REQUIRED_FIELDS,
     REGIONS_REQUIRED_FIELDS,
     REJECTED_SALES_FIELDNAMES,
     validate_sale_record,
 )
-from streaming.data_validation.data_validation_case import (
+from streaming.data_validation.data_validation_sowers import (
     add_validation_errors,
     make_lookup_set,
     validate_reference_records,
@@ -86,11 +61,10 @@ ROOT_DIR: Final[Path] = Path.cwd()
 DATA_DIR: Final[Path] = ROOT_DIR / "data"
 OUTPUT_DIR: Final[Path] = DATA_DIR / "output"
 
-SALES_CSV: Final[Path] = DATA_DIR / "sales.csv"
+ENROLLMENTS_CSV: Final[Path] = DATA_DIR / "enrollments_sowers.csv"
 REGIONS_CSV: Final[Path] = DATA_DIR / "regions.csv"
 PRODUCTS_CSV: Final[Path] = DATA_DIR / "products_sowers.csv"
-REJECTED_SALES_CSV: Final[Path] = OUTPUT_DIR / "producer_rejected_sales.csv"
-
+REJECTED_SALES_CSV: Final[Path] = OUTPUT_DIR / "rejected_enrollments_sowers.csv"
 
 # ==========================================================
 # DEFINE SECTION A. ACQUIRE RESOURCES AND GET READY HELPERS
@@ -105,8 +79,7 @@ def log_paths() -> None:
     LOG.info("========================")
     log_path(LOG, "ROOT_DIR", ROOT_DIR)
     log_path(LOG, "DATA_DIR", DATA_DIR)
-    log_path(LOG, "SALES_CSV", SALES_CSV)
-    log_path(LOG, "REGIONS_CSV", REGIONS_CSV)
+    log_path(LOG, "ENROLLMENTS_CSV", ENROLLMENTS_CSV)
     log_path(LOG, "PRODUCTS_CSV", PRODUCTS_CSV)
     log_path(LOG, "REJECTED_SALES_CSV", REJECTED_SALES_CSV)
 
@@ -266,8 +239,8 @@ def generate_messages(count: int) -> Generator[dict[str, str]]:
     Yields:
         One sale row dictionary at a time.
     """
-    sales_rows = read_csv_rows(SALES_CSV)
-    yield from sales_rows[:count]
+    enrollment_rows = read_csv_rows(ENROLLMENTS_CSV)
+    yield from enrollment_rows[:count]
 
 
 def write_rejected_record(record: DataRecordDict, errors: list[str]) -> None:

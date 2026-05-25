@@ -1,0 +1,8 @@
+product_id,product_name,category,level,price_usd,instructor
+AI-ML-201,Machine Learning Foundations,Artificial Intelligence,Intermediate,149.99,Dr. Maya Chen
+DS-PYTHON-101,Python for Data Science,Data Science,Beginner,99.99,Alex Rivera
+SQL-ANALYTICS-102,SQL for Analytics,Data Analytics,Beginner,89.99,Sarah Kim
+CLOUD-AWS-401,AWS Cloud Engineering,Cloud Computing,Advanced,199.99,Jordan Patel
+WEB-FULLSTACK-301,Full Stack Web Development,Web Development,Intermediate,129.99,Emily Carter
+DATA-VIZ-210,Data Visualization with Python,Data Visualization,Intermediate,79.99,Marcus Lee
+CYBER-SEC-110,Cybersecurity Fundamentals,Cybersecurity,Beginner,119.99,Nina Brooks
