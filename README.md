@@ -389,3 +389,73 @@ Processed enrollment analytics were written to:
 
 ```text
 data/output/consumed_enrollments_sowers.csv
+
+## Enrollment Analytics Results
+
+The Kafka enrollment streaming pipeline successfully processed valid
+online course enrollment transactions and wrote them to a separate
+output dataset.
+
+The processed enrollment output included:
+- order and customer information
+- course IDs and pricing
+- regional tax calculations
+- Kafka metadata
+- discount tracking
+- processed timestamps
+
+Accepted enrollment records included courses such as:
+- AI-ML-201
+- DS-PYTHON-101
+- SQL-ANALYTICS-102
+
+The consumer calculated:
+- subtotal
+- tax amount
+- total enrollment cost
+
+The project also demonstrated real-time message streaming with Kafka
+offset tracking and processing timestamps.
+
+Two enrollment records were rejected because their region IDs were not
+found in the reference validation dataset:
+- US-NY
+- US-FL
+
+These rejected records were automatically written to a rejected records
+CSV file for review.
+
+## Enrollment Analytics Results
+
+The Kafka enrollment streaming pipeline successfully processed valid
+online course enrollment transactions and wrote them to a separate
+output dataset.
+
+The processed enrollment output included:
+- order and customer information
+- course IDs and pricing
+- regional tax calculations
+- Kafka metadata
+- discount tracking
+- processed timestamps
+
+Accepted enrollment records included courses such as:
+- AI-ML-201
+- DS-PYTHON-101
+- SQL-ANALYTICS-102
+
+The consumer calculated:
+- subtotal
+- tax amount
+- total enrollment cost
+
+The project also demonstrated real-time message streaming with Kafka
+offset tracking and processing timestamps.
+
+Two enrollment records were rejected because their region IDs were not
+found in the reference validation dataset:
+- US-NY
+- US-FL
+
+These rejected records were automatically written to a rejected records
+CSV file for review.
